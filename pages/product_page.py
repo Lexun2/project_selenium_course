@@ -17,7 +17,7 @@ class ProductPage(BasePage):
         assert self.browser.find_element(*ProductPageLocators.NAME_ITEM).text == self.browser.find_element(*ProductPageLocators.NAME_ITEM_IN_MESSAGE).text, "Неверное имя товара в сообщении"
 
     def should_be_offer_in_message(self):
-        assert self.browser.find_element(*ProductPageLocators.OFFER).text == "Deferred benefit offer", "Указаны не те условия предложения (OFFER)"
+        assert self.browser.find_element(*ProductPageLocators.OFFER).text == "Deferred benefit offer", "Указаны не те условия предложения (OFFER)_"
 
     def should_be_price_in_message(self):
         assert self.browser.find_element(*ProductPageLocators.PRICE_ITEM).text == self.browser.find_element(*ProductPageLocators.SUMM_BASKET).text, "Указана неверная сумма корзины"
