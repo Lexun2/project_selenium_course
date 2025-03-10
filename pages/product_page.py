@@ -25,3 +25,4 @@ class ProductPage(BasePage):
     def should_not_be_success_message(self):
         assert self.is_disappeared(*ProductPageLocators.NAME_ITEM_IN_MESSAGE), "Сообщение с названием товара успешно добавленого в корзину не исчезает за выделенный timeout"
         assert self.is_disappeared(*ProductPageLocators.OFFER), "Сообщение с условиями предложения не исчезает за выделенный timeout"
+
