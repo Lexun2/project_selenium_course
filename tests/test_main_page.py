@@ -1,8 +1,7 @@
 from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
 from .pages.basket_page import BasketPage
-from .pages.locators import BasketPageLocators
-import time, pytest
+import pytest
 
 
 @pytest.mark.login_guest
@@ -30,7 +29,7 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     page = MainPage(browser, link)
     page.open()
     page.go_to_basket_page()
-    basket_page = BasketPage()
+    basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_not_be_items_in_basket()
     basket_page.should_be_message_basket_empty()
 

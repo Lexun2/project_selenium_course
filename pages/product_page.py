@@ -17,12 +17,18 @@ class ProductPage(BasePage):
         assert self.browser.find_element(*ProductPageLocators.NAME_ITEM).text == self.browser.find_element(*ProductPageLocators.NAME_ITEM_IN_MESSAGE).text, "Неверное имя товара в сообщении"
 
     def should_be_offer_in_message(self):
-        assert self.browser.find_element(*ProductPageLocators.OFFER).text == "Deferred benefit offer", "Указаны не те условия предложения (OFFER)_"
+        assert self.browser.find_element(*ProductPageLocators.OFFER).text == "Deferred benefit offer", "Не найден элемент с условиями предложения (Deferred benefit offer)"
+
+    def should_not_be_offer_in_message(self):
+        assert not self.browser.find_element(*ProductPageLocators.OFFER).text == "Deferred benefit offer", "Найден элемент с условиями предложения (Deferred benefit offer)"
 
     def should_be_price_in_message(self):
-        assert self.browser.find_element(*ProductPageLocators.PRICE_ITEM).text == self.browser.find_element(*ProductPageLocators.SUMM_BASKET).text, "Указана неверная сумма корзины"
+        assert self.browser.find_element(*ProductPageLocators.PRICE_ITEM).text == self.browser.find_element(*ProductPageLocators.SUMM_BASKET).text, "Суммы не сходятся, либо элементы не найдены"
 
     def should_not_be_success_message(self):
         assert self.is_disappeared(*ProductPageLocators.NAME_ITEM_IN_MESSAGE), "Сообщение с названием товара успешно добавленого в корзину не исчезает за выделенный timeout"
         assert self.is_disappeared(*ProductPageLocators.OFFER), "Сообщение с условиями предложения не исчезает за выделенный timeout"
 
+    def should_not_be_success_message_without_add_to_basket(self):
+        assert self.is_not_element_present(*ProductPageLocators.NAME_ITEM_IN_MESSAGE), "Success message(name) is presented, but should not be"
+        assert self.is_not_element_present(*ProductPageLocators.OFFER), "Success message(offer) is presented, but should not be"
