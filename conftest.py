@@ -1,16 +1,23 @@
 import pytest
-from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome', help="Choose browser: chrome or firefox")
     parser.addoption('--language', action='store', default='ru, en', help="Choose language: 'ru' or 'en'")
 
 def browser_chrome_settings(request):
+    chrome_service = ChromeService(ChromeDriverManager().install())
     options = Options()
     user_language = request.config.getoption("language")
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
-    browser = webdriver.Chrome(options=options)
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--ignore-certificate-errors")
+    browser = webdriver.Chrome(service = chrome_service, options = options)
     return browser
 
 def browser_firefox_settings(request):
