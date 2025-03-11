@@ -4,6 +4,8 @@ class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
     BUTTON_SEE_BASKET = (By.CSS_SELECTOR, "div.basket-mini>span>a.btn[href*='basket']")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
+    # div.alert-success>div.wicon   selector abou success registration
 
 class MainPageLocators():
     pass
@@ -15,6 +17,10 @@ class BasketPageLocators():
 class LoginPageLocators():
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
     REGISTRATION_FORM = (By.CSS_SELECTOR, "#register_form")
+    EMAIL = (By.CSS_SELECTOR, "input[name='registration-email']")
+    PASSWORD = (By.CSS_SELECTOR, "input[name='registration-password1']")
+    PASSWORD2 = (By.CSS_SELECTOR, "input[name='registration-password2']")
+    BUTTON_REGISTRATION_SUBMIT = (By.CSS_SELECTOR, "button[name='registration_submit']")
 
 class ProductPageLocators():
     BUTTON_ADD_TO_BASKET = (By.CSS_SELECTOR, "button.btn-add-to-basket")
