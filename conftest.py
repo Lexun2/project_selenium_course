@@ -1,4 +1,4 @@
-import pytest
+import pytest, os
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -14,9 +14,14 @@ def browser_chrome_settings(request):
     options = Options()
     user_language = request.config.getoption("language")
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
-    options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     options.add_argument("--ignore-certificate-errors")
+    headless = os.environ.get('HEADLESS', 'False').lower() == 'true'
+    if headless:
+        options.add_argument("--headless")
+        print("Запущен в headless режиме")
+    else:
+        print("Запущен в обычном режиме")
     browser = webdriver.Chrome(service = chrome_service, options = options)
     return browser
 

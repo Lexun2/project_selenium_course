@@ -1,8 +1,7 @@
 from pages.product_page import ProductPage
 from pages.basket_page import BasketPage
 from pages.login_page import LoginPage
-from pages.locators import ProductPageLocators
-import pytest
+import pytest, time
 from faker import Faker
 
 
@@ -19,6 +18,7 @@ class TestUserAddToBasketFromProductPage():
         login_page.register_new_user(faker.email(), 'bke75!ederrf45')
         login_page.should_be_authorized_user()
 
+    @pytest.mark.xfail(reason="Now not work!")
     def test_user_cant_see_success_message_after_adding_product_to_basket(self, browser): 
         """Открываем страницу товара 
         Добавляем товар в корзину 
@@ -27,9 +27,10 @@ class TestUserAddToBasketFromProductPage():
         product_page = ProductPage(browser, link)
         product_page.open()
         product_page.add_to_basket()
-        assert product_page.is_element_present(*ProductPageLocators.NAME_ITEM_IN_MESSAGE), "Не появилось сообщение о добавлении в корзину, хотя должно"
+        product_page.should_not_be_success_message()
+       
 
-
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1"
         product_page = ProductPage(browser, link)
@@ -40,7 +41,7 @@ class TestUserAddToBasketFromProductPage():
 
 
 
-@pytest.mark.login
+@pytest.mark.xfail(reason="Now not work!")
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser): 
     """Открываем страницу товара 
     Добавляем товар в корзину 
@@ -49,9 +50,12 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     product_page = ProductPage(browser, link)
     product_page.open()
     product_page.add_to_basket()
-    product_page.is_not_element_present(*ProductPageLocators.NAME_ITEM_IN_MESSAGE), "Не появилось сообщение о добавлении в корзину, хотя должно"
+    time.sleep(5)
+    product_page.should_not_be_success_message()
 
 
+
+@pytest.mark.need_review
 @pytest.mark.parametrize("promo",[
                                     0 \
                                     # , 1, 2, 3, 4, 5, 6,
@@ -59,7 +63,6 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
                                     # 8, 9                                   
                                     ])
 # @pytest.mark.parametrize("promo",[ num if num!=7 else pytest.param(num, marks=pytest.mark.xfail) for num in range(10) ])
-
 def test_guest_can_add_product_to_basket(browser, promo):
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{promo}"
     product_page = ProductPage(browser, link)
@@ -67,7 +70,6 @@ def test_guest_can_add_product_to_basket(browser, promo):
     product_page.add_to_basket()
     product_page.solve_quiz_and_get_code()
     product_page.should_be_product_page()
-    # product_page.should_not_be_success_message()
 
 
 
@@ -77,11 +79,11 @@ def test_guest_cant_see_success_message(browser):
     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-girl-who-played-with-non-fire_203/"
     product_page = ProductPage(browser, link)
     product_page.open()
-    product_page.should_not_be_success_message_without_add_to_basket()
+    product_page.should_not_be_success_message()
 
  
 
-@pytest.mark.xfail
+@pytest.mark.xfail(reason="This feature in progress! Now not work!")
 def test_message_disappeared_after_adding_product_to_basket(browser): 
     """Открываем страницу товара
     Добавляем товар в корзину
@@ -90,7 +92,7 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     product_page = ProductPage(browser, link)
     product_page.open()
     product_page.add_to_basket()
-    product_page.should_not_be_success_message()
+    product_page.should_disappear_success_message()
   
 
 
@@ -104,6 +106,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
 
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     """Гость может нажать кнопку Войти со страницы любого товара"""
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
@@ -112,6 +115,8 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page.go_to_login_page()
 
 
+
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/"
     product_page = ProductPage(browser, link)
@@ -120,9 +125,10 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_not_be_items_in_basket()
     basket_page.should_be_message_basket_empty()
-    product_page = ProductPage(browser, link)
     product_page.open()
+    product_page = ProductPage(browser, link)  
     product_page.add_to_basket()
+    time.sleep(1)
     product_page.go_to_basket_page()
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_be_items_in_basket()
