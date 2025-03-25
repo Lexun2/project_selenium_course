@@ -152,7 +152,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
 @allure.feature('Basket')
 @allure.story('Basket Feature')
 @allure.title("Тест надписей пустой корзины и не пустой")
-@allure.description("Сначала мы заходим переходим со страницы продукта в корзиу, проверем что она пустая, потом возвращаемся к продукту, кладём его в корзину," /
+@allure.description("Сначала мы заходим переходим со страницы продукта в корзиу, проверем что она пустая, потом возвращаемся к продукту, кладём его в корзину," \
                     " переходим в корзину и проверяем что корзина не пустая и в нем есть элемент товара.")
 @allure.severity(allure.severity_level.NORMAL)
 @pytest.mark.need_review
