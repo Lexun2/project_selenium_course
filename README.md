@@ -8,7 +8,7 @@ https://stepik.org/course/575/syllabus
 - от себя добавил тесты CI через GitActions при каждом PUSH
 
 
-TODO: надо прикрутить отчеты в Allure
+TODO: надо прикрутить отчеты в Allure - ГОТОВО https://lexun2.github.io/project_selenium_course/
 TODO: надо прикрутить библиотеку для хранения чувствительных данных
 TODO: надо прикрутить библиотеку (вроде d43) для тестовых данных
 
