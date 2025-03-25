@@ -1,12 +1,16 @@
 from pages.main_page import MainPage
 from pages.login_page import LoginPage
 from pages.basket_page import BasketPage
-import pytest
+import pytest, allure
 
 
 @pytest.mark.login_guest
 class TestLoginFromMainPage():
 
+    @allure.feature('Главная страница')
+    @allure.story('UI Главной страницы')
+    @allure.title("Тест видимости формы логина и формы регистрации при переходе неавторизованного пользователя с MainPage на LoginPage")
+    @allure.severity(allure.severity_level.NORMAL)
     def test_guest_can_go_to_login_page(self, browser):
         link = "http://selenium1py.pythonanywhere.com"
         page = MainPage(browser, link)
@@ -15,6 +19,11 @@ class TestLoginFromMainPage():
         login_page = LoginPage(browser, browser.current_url)
         login_page.should_be_login_page()
 
+
+    @allure.feature('Главная страница')
+    @allure.story('UI Главной страницы')
+    @allure.title("Тест видимости кнопки логин неавторизованного пользователя")
+    @allure.severity(allure.severity_level.NORMAL)
     def test_guest_should_see_login_link(self, browser):
         link = "http://selenium1py.pythonanywhere.com/"
         page = MainPage(browser, link)
@@ -22,7 +31,10 @@ class TestLoginFromMainPage():
         page.should_be_login_link()
 
 
-
+@allure.feature('Basket')
+@allure.story('Basket Feature')
+@allure.title("Тест надписей пустой корзины при переходе в Корзину из MainPage")
+@allure.severity(allure.severity_level.NORMAL)
 # @pytest.mark.skip
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     link = "http://selenium1py.pythonanywhere.com"
@@ -33,14 +45,5 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     basket_page.should_not_be_items_in_basket()
     basket_page.should_be_message_basket_empty()
 
-
-
-# def test_guest_should_be_login_page(browser):
-#     link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
-#     page = LoginPage(browser, link)
-#     page.open()
-#     page.should_be_login_page()
-
-    
 
 
