@@ -27,7 +27,7 @@ jobs:
     - name: Run tests
       env:
           HEADLESS: true  # <-- убираем визуализацию браузера
-      run: pytest tests --browser_name=chrome --alluredir=tests\reports
+      run: pytest tests --browser_name=chrome --alluredir=.tests/reports
 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
