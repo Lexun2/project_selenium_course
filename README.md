@@ -9,7 +9,9 @@ https://stepik.org/course/575/syllabus
 
 
 TODO: надо прикрутить отчеты в Allure - ГОТОВО https://lexun2.github.io/project_selenium_course/
+
 TODO: надо прикрутить библиотеку для хранения чувствительных данных
+
 TODO: надо прикрутить библиотеку (вроде d43) для тестовых данных
 
 Тестировщик - Рубцов Алексей
