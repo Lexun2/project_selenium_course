@@ -27,13 +27,13 @@ jobs:
     - name: Run tests
       env:
           HEADLESS: true  # <-- убираем визуализацию браузера
-      run: pytest tests --browser_name=chrome --alluredir=.tests/reports
+      run: pytest --browser_name=chrome --alluredir=./tests/reports tests
 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
         name: allure_report
-        path: tests/reports/
+        path: ./tests/reports
 
     - name: Get Allure history
       uses: actions/checkout@v2
@@ -47,14 +47,14 @@ jobs:
       if: always()
       id: allure-report
       with:
-        allure_results: reports
+        allure_results: tests/reports
         gh_pages: gh-pages
-        allure_report: allure-report
-        allure_history: allure-history
+        allure_report: tests/allure-report
+        allure_history: tests/allure-history
 
     - uses: peaceiris/actions-gh-pages@v2
       if: always()
       env:
         PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: allure-history
+        PUBLISH_DIR: tests/allure-history
