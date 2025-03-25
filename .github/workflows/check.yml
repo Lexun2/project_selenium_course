@@ -33,7 +33,7 @@ jobs:
       if: ${{ !cancelled() }}
       with:
         name: allure_report
-        path: reports/
+        path: tests/reports/
 
     - name: Get Allure history
       uses: actions/checkout@v2
