@@ -5,6 +5,11 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
 
+pytest_plugins = [
+   "tests.api.fixtures_api"
+]
+
+
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome', help="Choose browser: chrome or firefox")
     parser.addoption('--language', action='store', default='ru, en', help="Choose language: 'ru' or 'en'")
