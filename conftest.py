@@ -15,7 +15,7 @@ def pytest_addoption(parser):
     parser.addoption('--language', action='store', default='ru, en', help="Choose language: 'ru' or 'en'")
 
 def browser_chrome_settings(request):
-    chrome_service = ChromeService(ChromeDriverManager().install())
+    chrome_service = ChromeService(ChromeDriverManager().install()) # todo: пора удлить
     options = Options()
     user_language = request.config.getoption("language")
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
