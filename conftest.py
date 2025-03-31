@@ -1,8 +1,6 @@
 import pytest, os
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 pytest_plugins = [
@@ -15,7 +13,6 @@ def pytest_addoption(parser):
     parser.addoption('--language', action='store', default='ru, en', help="Choose language: 'ru' or 'en'")
 
 def browser_chrome_settings(request):
-    chrome_service = ChromeService(ChromeDriverManager().install()) # todo: пора удлить
     options = Options()
     user_language = request.config.getoption("language")
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
@@ -27,7 +24,7 @@ def browser_chrome_settings(request):
         print("Запущен в headless режиме")
     else:
         print("Запущен в обычном режиме")
-    browser = webdriver.Chrome(service = chrome_service, options = options)
+    browser = webdriver.Chrome(options = options)
     return browser
 
 def browser_firefox_settings(request):
