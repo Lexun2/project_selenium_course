@@ -21,7 +21,7 @@ class TestUserAddToBasketFromProductPage():
 
     @allure.feature('Product')
     @allure.story('Product Feature')
-    @allure.title("Тест заанее проваленный у авторизованного пользователя")
+    @allure.title("Тест заранее проваленный у авторизованного пользователя")
     @pytest.mark.xfail(reason="Now not work!")
     def test_user_cant_see_success_message_after_adding_product_to_basket(self, browser): 
         """Открываем страницу товара 
