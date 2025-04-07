@@ -1,0 +1,6 @@
+
+start chrome browser for test..
+Запущен в headless режиме
+No second alert presented
+
+quit browser..
