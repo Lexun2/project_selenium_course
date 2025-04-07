@@ -1,5 +1,6 @@
 import pytest, requests
 from faker import Faker
+from base64 import b64encode
 
 # Для тестового задания Вани Стрибука
 # @pytest.fixture
@@ -29,15 +30,14 @@ def api_headers():
 
 @pytest.fixture
 def registered_user(api_url):
-    faker = Faker("ru_RU")
+    faker = Faker()
+    print("Использовали фикстуру registered_user")
     payload_data = {
                     "username": faker.name(),
                     "email": faker.email(),
                     "password": faker.password(8)
                     }
     response = requests.post(f"{api_url}/users/", payload_data)
-    # print(response.json())
-    # print(response.status_code)
     assert response.status_code==201, "Ошибка создания пользователя"
     assert "id" in response.json(), "В ответе нет id"
     assert response.json()["username"]==payload_data["username"] , "Username don't equal"
@@ -51,7 +51,7 @@ def auth_token(api_url, registered_user):
         "email": registered_user["email"],
         "password": registered_user["password"],
     }
-    response = requests.post(f"{api_url}/jwt/create", json = auth_data)
+    response = requests.post(f"{api_url}/jwt/create/", json = auth_data)
     assert response.status_code == 200
     return response.json()["access"]
 
@@ -59,3 +59,9 @@ def auth_token(api_url, registered_user):
 @pytest.fixture
 def auth_headers(auth_token):
     return {"Authorization": f"Bearer {auth_token}"}
+
+
+@pytest.fixture
+def auth_basic_headers(registered_user):
+    token = b64encode(f'{registered_user["username"]}:{registered_user["password"]}'.encode('utf-8')).decode("ascii")
+    return {"Authorization": f"Basic {token}"}
