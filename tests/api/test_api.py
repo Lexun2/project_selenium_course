@@ -99,9 +99,10 @@ def test_api_quest_positive_registration_255_symbol_username(api_url):
 @allure.title("Тест позитивный удаления пользователя")
 @allure.description("Используем метод DELETE, для позитивного удаления пользователя")
 @pytest.mark.user_registration
+@pytest.mark.use_mock
 # @pytest.mark.xfail(reason="status_code = 400")
-@patch('test_api.requests.delete', return_value={"status_code": 204})
-@patch('test_api.requests.get', return_value={"status_code": 401})
+@patch('test_api.requests.delete')
+@patch('test_api.requests.get')
 def test_delete_user(mock_get, mock_delete, api_url, auth_headers):
     mock_delete.return_value = Mock(status_code=204)
     mock_get.return_value = Mock(status_code=401)
