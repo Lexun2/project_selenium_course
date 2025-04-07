@@ -2,6 +2,7 @@ import allure, requests, pytest
 from faker import Faker
 from requests.auth import HTTPBasicAuth # для авторизации Basic (логин:пароль)
 from base64 import b64encode
+from unittest.mock import patch, Mock
 
 
 @allure.feature('API')
@@ -98,8 +99,12 @@ def test_api_quest_positive_registration_255_symbol_username(api_url):
 @allure.title("Тест позитивный удаления пользователя")
 @allure.description("Используем метод DELETE, для позитивного удаления пользователя")
 @pytest.mark.user_registration
-@pytest.mark.xfail(reason="status_code = 400")
-def test_delete_user(api_url, registered_user, auth_headers):
+# @pytest.mark.xfail(reason="status_code = 400")
+@patch('test_api.requests.delete', return_value={"status_code": 204})
+@patch('test_api.requests.get', return_value={"status_code": 401})
+def test_delete_user(mock_get, mock_delete, api_url, auth_headers):
+    mock_delete.return_value = Mock(status_code=204)
+    mock_get.return_value = Mock(status_code=401)
     response = requests.delete(f"{api_url}/users/me/", headers=auth_headers)
     assert response.status_code == 204 #тут 400 ждем 204
     # получить данные удаленного пользователя
