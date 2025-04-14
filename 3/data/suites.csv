@@ -1,4 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"This test verifies the screenshot of the main page.","2189","Test Screenshot for Main Page","tests.snapshots","Mon Apr 14 07:12:43 GMT 2025","failed","Mon Apr 14 07:12:45 GMT 2025","","test_screen_page","",""
-"This test verifies the screenshot of the product page.","868","Test Screenshot for Product Page","tests.snapshots","Mon Apr 14 07:12:46 GMT 2025","failed","Mon Apr 14 07:12:47 GMT 2025","","test_screen_page","",""
-"This test verifies the screenshot of the login page.","702","Test Screenshot for Login Page","tests.snapshots","Mon Apr 14 07:12:47 GMT 2025","failed","Mon Apr 14 07:12:48 GMT 2025","","test_screen_page","",""
