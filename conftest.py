@@ -1,5 +1,7 @@
-import pytest, os
+import pytest, os, allure
+from datetime import datetime
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 
 
@@ -24,7 +26,9 @@ def browser_chrome_settings(request):
         print("Запущен в headless режиме")
     else:
         print("Запущен в обычном режиме")
-    browser = webdriver.Chrome(options = options)
+    
+    browser = webdriver.Chrome(options = options, service=Service())
+    browser.set_window_size(1280, 720)
     return browser
 
 def browser_firefox_settings(request):
@@ -55,3 +59,48 @@ def browser(request):
     yield browser
     print("\nquit browser..")
     browser.quit()
+
+
+
+# Скриншот упавших тестов
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    """
+    Перехватывает результат теста и делает скриншот при падении.
+    """
+    # Получаем результат выполнения теста
+    outcome = yield
+    rep = outcome.get_result()
+
+    # Проверяем, что тест упал (failed) и это стадия call (основное выполнение теста)
+    if rep.when == "call" and rep.failed:
+        # Проверяем, есть ли в тесте фикстура driver
+        browser = None
+        for fixture in item.fixturenames:
+            if fixture == "browser":
+                browser = item.funcargs.get("browser")
+                break
+
+        if browser:
+            try:
+                # Генерируем имя файла с временной меткой
+                timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                screenshot_name = f"screenshot_error_{timestamp}.png"
+                screenshot_path = os.path.join("screenshots", screenshot_name)
+
+                # Создаём директорию для скриншотов, если её нет
+                os.makedirs("screenshots", exist_ok=True)
+
+                # Делаем скриншот
+                browser.save_screenshot(screenshot_path)
+
+                # Прикрепляем скриншот к отчёту Allure
+                with open(screenshot_path, "rb") as image_file:
+                    allure.attach(
+                        body=image_file.read(),
+                        name=f"Screenshot_error_{timestamp}",
+                        attachment_type=allure.attachment_type.PNG
+                    )
+                print(f"Screenshot saved at {screenshot_path} and attached to Allure report")
+            except Exception as e:
+                print(f"Failed to take screenshot: {e}")

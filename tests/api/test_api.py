@@ -34,6 +34,28 @@ def test_api_quest_positive_registration_and_auth(api_url):
     print("\n"+token+"\n")
 
 
+
+@allure.feature('API')
+@allure.story('API Login')
+@allure.title("Тест негативный регистрации пользователя без какого либо поля json")
+@allure.description("Используем метод POST, для негативной регистрации пользователя без 1го поля")
+@pytest.mark.user_registration
+@pytest.mark.parametrize("key",["username", "email", "password"])
+def test_api_quest_negative_registration_and_auth(api_url, key):
+    faker = Faker("ru_RU")
+    payload_data = {
+                    "username": faker.name(),
+                    "email": faker.email(),
+                    "password": faker.password(8)
+                    }
+    del payload_data[key]
+    response = requests.post(f"{api_url}/users/", payload_data)
+    assert response.status_code==400, "Ошибка создания пользователя"
+
+
+
+
+
 @allure.feature('API')
 @allure.story('API Login')
 @allure.title("Тест регистрации пользователя с username = 1 символ")
@@ -99,8 +121,7 @@ def test_api_quest_positive_registration_255_symbol_username(api_url):
 @allure.title("Тест позитивный удаления пользователя")
 @allure.description("Используем метод DELETE, для позитивного удаления пользователя")
 @pytest.mark.user_registration
-@pytest.mark.use_mock
-# @pytest.mark.xfail(reason="status_code = 400")
+@pytest.mark.use_mock #(reason="feature not work")
 @patch('test_api.requests.delete')
 @patch('test_api.requests.get')
 def test_delete_user(mock_get, mock_delete, api_url, auth_headers):
