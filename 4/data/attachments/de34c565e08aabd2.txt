@@ -1,5 +1,0 @@
-
-start chrome browser for test..
-Запущен в headless режиме
-
-quit browser..
