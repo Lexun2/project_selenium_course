@@ -1,4 +1,4 @@
-name: tests_ui
+name: tests_snapshots
 
 on:
   push:

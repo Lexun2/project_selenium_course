@@ -74,7 +74,7 @@ def pytest_runtest_makereport(item, call):
 
     # Проверяем, что тест упал (failed) и это стадия call (основное выполнение теста)
     if rep.when == "call" and rep.failed:
-        # Проверяем, есть ли в тесте фикстура driver
+        # Проверяем, есть ли в тесте фикстура browser, что можно делать скриншот чего-то
         browser = None
         for fixture in item.fixturenames:
             if fixture == "browser":
