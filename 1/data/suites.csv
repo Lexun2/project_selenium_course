@@ -1,20 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"Открываем страницу товара 
-    Добавляем товар в корзину 
-    Проверяем, что нет сообщения об успехе с помощью is_not_element_present","7585","Тест заранее проваленный","tests.ui","Mon Apr 07 18:28:41 GMT 2025","skipped","Mon Apr 07 18:28:49 GMT 2025","","test_product_page","",""
-"","1765","Тест видимости формы логина и формы регистрации при переходе неавторизованного пользователя с MainPage на LoginPage","tests.ui","Mon Apr 07 18:28:16 GMT 2025","passed","Mon Apr 07 18:28:18 GMT 2025","TestLoginFromMainPage","test_main_page","",""
-"Гость видит Кнопку Войти со страницы любого товара","945","Тест видимости кнопки 'Войти' со страницы любого товара","tests.ui","Mon Apr 07 18:29:20 GMT 2025","passed","Mon Apr 07 18:29:21 GMT 2025","","test_product_page","",""
-"Сначала мы заходим переходим со страницы продукта в корзиу, проверем что она пустая, потом возвращаемся к продукту, кладём его в корзину, переходим в корзину и проверяем что корзина не пустая и в нем есть элемент товара.","24048","Тест надписей пустой корзины и не пустой","tests.ui","Mon Apr 07 18:29:23 GMT 2025","passed","Mon Apr 07 18:29:47 GMT 2025","","test_product_page","",""
-"","11466","Тест надписей пустой корзины при переходе в Корзину из MainPage","tests.ui","Mon Apr 07 18:28:19 GMT 2025","passed","Mon Apr 07 18:28:31 GMT 2025","","test_main_page","",""
-"","1508","Тест появления сообщений при добавлении товара в корзину","tests.ui","Mon Apr 07 18:28:49 GMT 2025","passed","Mon Apr 07 18:28:50 GMT 2025","","test_product_page","",""
-"Открываем страницу товара 
-    Проверяем, что нет сообщения об успехе с помощью is_not_element_present","20863","Тест отсутствия сообщений о добавлении в корзину при открытии страницы продукта","tests.ui","Mon Apr 07 18:28:51 GMT 2025","passed","Mon Apr 07 18:29:12 GMT 2025","","test_product_page","",""
-"Открываем страницу товара
-    Добавляем товар в корзину
-    Проверяем, что нет сообщения об успехе с помощью is_disappeared","7435","Тест заранее проваленный","tests.ui","Mon Apr 07 18:29:12 GMT 2025","skipped","Mon Apr 07 18:29:20 GMT 2025","","test_product_page","",""
-"","2534","Тест добавления товара в корзины авторизованным пользователем","tests.ui","Mon Apr 07 18:28:38 GMT 2025","passed","Mon Apr 07 18:28:41 GMT 2025","TestUserAddToBasketFromProductPage","test_product_page","",""
-"","941","Тест видимости кнопки логин неавторизованного пользователя","tests.ui","Mon Apr 07 18:28:18 GMT 2025","passed","Mon Apr 07 18:28:19 GMT 2025","TestLoginFromMainPage","test_main_page","",""
-"Открываем страницу товара 
-        Добавляем товар в корзину 
-        Проверяем, что нет сообщения об успехе с помощью is_not_element_present","1553","Тест заранее проваленный у авторизованного пользователя","tests.ui","Mon Apr 07 18:28:34 GMT 2025","skipped","Mon Apr 07 18:28:35 GMT 2025","TestUserAddToBasketFromProductPage","test_product_page","",""
-"Гость может нажать кнопку Войти со страницы любого товара","1334","Тест работоспособности кнопки 'Войти' со страницы любого товара","tests.ui","Mon Apr 07 18:29:21 GMT 2025","passed","Mon Apr 07 18:29:23 GMT 2025","","test_product_page","",""
+"This test verifies the screenshot of the product page.","1030","Test Screenshot for Product Page","tests.snapshots","Mon Apr 14 07:00:12 GMT 2025","failed","Mon Apr 14 07:00:13 GMT 2025","","test_screen_page","",""
+"This test verifies the screenshot of the login page.","902","Test Screenshot for Login Page","tests.snapshots","Mon Apr 14 07:00:14 GMT 2025","failed","Mon Apr 14 07:00:15 GMT 2025","","test_screen_page","",""
+"This test verifies the screenshot of the main page.","1179","Test Screenshot for Main Page","tests.snapshots","Mon Apr 14 07:00:11 GMT 2025","failed","Mon Apr 14 07:00:12 GMT 2025","","test_screen_page","",""
