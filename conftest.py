@@ -1,4 +1,4 @@
-import pytest, os, allure
+import pytest, os, allure, tempfile
 from datetime import datetime
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -20,6 +20,12 @@ def browser_chrome_settings(request):
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
     options.add_argument("--disable-gpu")
     options.add_argument("--ignore-certificate-errors")
+
+    # Уникальная временная директория для user-data-dir
+    temp_user_data_dir = tempfile.mkdtemp()
+    options.add_argument(f"--user-data-dir={temp_user_data_dir}")
+
+
     headless = os.environ.get('HEADLESS', 'False').lower() == 'true'
     if headless:
         options.add_argument("--headless")
@@ -27,6 +33,7 @@ def browser_chrome_settings(request):
     else:
         print("Запущен в обычном режиме")
     
+
     browser = webdriver.Chrome(options = options, service=Service())
     browser.set_window_size(1280, 720)
     return browser

@@ -27,13 +27,12 @@ jobs:
 
     # Сохраняем сгенерированные скриншоты как артефакты
     - name: Upload snapshots
-    if: ${{ !cancelled() }}
-    uses: actions/upload-artifact@v4
-    with:
-      name: reference-snapshots
-      path: tests/snapshots/data/
-      retention-days: 7
-
+      if: ${{ !cancelled() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: reference-snapshots
+        path: tests/snapshots/data/
+        retention-days: 7    
     # Коммитим новые или обновлённые скриншоты в репозиторий
     - name: Commit snapshots
       run: |

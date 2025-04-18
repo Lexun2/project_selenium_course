@@ -76,6 +76,7 @@ def test_api_quest_positive_registration_1_symbol_username(api_url):
     assert response.json()["email"]==payload_data["email"] , "Username don't equal"
 
 
+
 @allure.feature('API')
 @allure.story('API Login')
 @allure.title("Тест регистрации пользователя с username = 255 символ")
