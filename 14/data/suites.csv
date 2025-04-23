@@ -1,4 +1,20 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"This test verifies the screenshot of the main page.","691","Test Screenshot for Main Page","tests.snapshots","Fri Apr 18 06:27:55 GMT 2025","passed","Fri Apr 18 06:27:56 GMT 2025","","test_screen_page","",""
-"This test verifies the screenshot of the login page.","421","Test Screenshot for Login Page","tests.snapshots","Fri Apr 18 06:27:58 GMT 2025","passed","Fri Apr 18 06:27:59 GMT 2025","","test_screen_page","",""
-"This test verifies the screenshot of the product page.","456","Test Screenshot for Product Page","tests.snapshots","Fri Apr 18 06:27:57 GMT 2025","passed","Fri Apr 18 06:27:57 GMT 2025","","test_screen_page","",""
+"","416","Тест видимости кнопки логин неавторизованного пользователя","tests.ui","Wed Apr 23 14:52:11 GMT 2025","passed","Wed Apr 23 14:52:12 GMT 2025","TestLoginFromMainPage","test_main_page","",""
+"","1795","Тест добавления товара в корзины авторизованным пользователем","tests.ui","Wed Apr 23 14:52:31 GMT 2025","passed","Wed Apr 23 14:52:33 GMT 2025","TestUserAddToBasketFromProductPage","test_product_page","",""
+"","1395","Тест видимости формы логина и формы регистрации при переходе неавторизованного пользователя с MainPage на LoginPage","tests.ui","Wed Apr 23 14:52:09 GMT 2025","passed","Wed Apr 23 14:52:10 GMT 2025","TestLoginFromMainPage","test_main_page","",""
+"","11154","Тест надписей пустой корзины при переходе в Корзину из MainPage","tests.ui","Wed Apr 23 14:52:13 GMT 2025","passed","Wed Apr 23 14:52:24 GMT 2025","","test_main_page","",""
+"Открываем страницу товара
+    Добавляем товар в корзину
+    Проверяем, что нет сообщения об успехе с помощью is_disappeared","5222","Тест заранее проваленный","tests.ui","Wed Apr 23 14:53:06 GMT 2025","skipped","Wed Apr 23 14:53:11 GMT 2025","","test_product_page","",""
+"Открываем страницу товара 
+        Добавляем товар в корзину 
+        Проверяем, что нет сообщения об успехе с помощью is_not_element_present","1040","Тест заранее проваленный у авторизованного пользователя","tests.ui","Wed Apr 23 14:52:28 GMT 2025","skipped","Wed Apr 23 14:52:29 GMT 2025","TestUserAddToBasketFromProductPage","test_product_page","",""
+"Гость видит Кнопку Войти со страницы любого товара","441","Тест видимости кнопки 'Войти' со страницы любого товара","tests.ui","Wed Apr 23 14:53:12 GMT 2025","passed","Wed Apr 23 14:53:13 GMT 2025","","test_product_page","",""
+"","1202","Тест появления сообщений при добавлении товара в корзину","tests.ui","Wed Apr 23 14:52:41 GMT 2025","passed","Wed Apr 23 14:52:42 GMT 2025","","test_product_page","",""
+"Гость может нажать кнопку Войти со страницы любого товара","644","Тест работоспособности кнопки 'Войти' со страницы любого товара","tests.ui","Wed Apr 23 14:53:14 GMT 2025","passed","Wed Apr 23 14:53:14 GMT 2025","","test_product_page","",""
+"Открываем страницу товара 
+    Добавляем товар в корзину 
+    Проверяем, что нет сообщения об успехе с помощью is_not_element_present","5561","Тест заранее проваленный","tests.ui","Wed Apr 23 14:52:34 GMT 2025","failed","Wed Apr 23 14:52:40 GMT 2025","","test_product_page","",""
+"Сначала мы заходим переходим со страницы продукта в корзиу, проверем что она пустая, потом возвращаемся к продукту, кладём его в корзину, переходим в корзину и проверяем что корзина не пустая и в нем есть элемент товара.","24084","Тест надписей пустой корзины и не пустой","tests.ui","Wed Apr 23 14:53:15 GMT 2025","passed","Wed Apr 23 14:53:39 GMT 2025","","test_product_page","",""
+"Открываем страницу товара 
+    Проверяем, что нет сообщения об успехе с помощью is_not_element_present","21495","Тест отсутствия сообщений о добавлении в корзину при открытии страницы продукта","tests.ui","Wed Apr 23 14:52:44 GMT 2025","passed","Wed Apr 23 14:53:05 GMT 2025","","test_product_page","",""
