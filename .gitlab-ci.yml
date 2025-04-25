@@ -1,0 +1,41 @@
+stages:
+  - test
+  - deploy
+
+tests_api:
+  image: python:3.10
+  stage: test
+  variables:
+    HEADLESS: "true"
+  before_script:
+    - apt-get update
+    - apt-get install -y wget
+    # Скачиваем и устанавливаем libssl1.1 для совместимости с selenium manager:
+    - wget http://security.debian.org/debian-security/pool/updates/main/o/openssl1.1/libssl1.1_1.1.1n-0+deb11u5_amd64.deb
+    - dpkg -i libssl1.1_1.1.1n-0+deb11u5_amd64.deb || apt-get -f install -y
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+  script:
+    - pytest --browser_name=chrome --alluredir=./tests/api/reports  tests/api
+  artifacts:
+    paths:
+      - ./tests/api/reports
+    expire_in: 1 week
+  only:
+    - main
+
+deploy_allure_report:
+  stage: deploy
+  image: python:3.10
+  before_script:
+    - apt-get update && apt-get install -y wget default-jre-headless
+    - wget https://github.com/allure-framework/allure2/releases/download/2.27.0/allure_2.27.0-1_all.deb
+    - dpkg -i allure_2.27.0-1_all.deb
+    - apt-get install -f -y     # Подтянет все  зависимости для deb-пакета
+  script:
+    - allure generate ./tests/api/reports -o report_html
+    - cp -r report_html/* /var/www/allure-reports/project-selenium-course/
+  only:
+    - main
+  dependencies:
+    - tests_api

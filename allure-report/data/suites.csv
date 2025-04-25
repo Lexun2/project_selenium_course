@@ -1,0 +1,32 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Используем метод POST, для негативной регистрации пользователя без 1го поля","171","Тест негативный регистрации пользователя без какого либо поля json","tests.api","Sun Apr 20 12:13:51 MSK 2025","passed","Sun Apr 20 12:13:51 MSK 2025","","test_api","",""
+"Гость может нажать кнопку Войти со страницы любого товара","2380","Тест работоспособности кнопки 'Войти' со страницы любого товара","tests.ui","Sun Apr 20 12:15:47 MSK 2025","passed","Sun Apr 20 12:15:49 MSK 2025","","test_product_page","",""
+"Гость видит Кнопку Войти со страницы любого товара","1876","Тест видимости кнопки 'Войти' со страницы любого товара","tests.ui","Sun Apr 20 12:15:43 MSK 2025","passed","Sun Apr 20 12:15:45 MSK 2025","","test_product_page","",""
+"","12809","Тест надписей пустой корзины при переходе в Корзину из MainPage","tests.ui","Sun Apr 20 12:14:20 MSK 2025","passed","Sun Apr 20 12:14:33 MSK 2025","","test_main_page","",""
+"","1941","Тест видимости кнопки логин неавторизованного пользователя","tests.ui","Sun Apr 20 12:14:17 MSK 2025","passed","Sun Apr 20 12:14:18 MSK 2025","TestLoginFromMainPage","test_main_page","",""
+"This test verifies the screenshot of the main page.","2508","Test Screenshot for Main Page","tests.snapshots","Sun Apr 20 12:14:02 MSK 2025","passed","Sun Apr 20 12:14:04 MSK 2025","","test_screen_page","",""
+"Используем метод POST, для позитивного изменения пароля пользователя","2272","Тест позитивный изменения пароля пользователя","tests.api","Sun Apr 20 12:13:57 MSK 2025","passed","Sun Apr 20 12:14:00 MSK 2025","","test_api","",""
+"Используем метод POST, для регистрации пользователя с username 1 символ","1220","Тест регистрации пользователя с username = 1 символ","tests.api","Sun Apr 20 12:13:51 MSK 2025","passed","Sun Apr 20 12:13:52 MSK 2025","","test_api","",""
+"Используем метод POST, для негативной регистрации пользователя без 1го поля","173","Тест негативный регистрации пользователя без какого либо поля json","tests.api","Sun Apr 20 12:13:51 MSK 2025","passed","Sun Apr 20 12:13:51 MSK 2025","","test_api","",""
+"Используем метод POST, для негативной регистрации пользователя без 1го поля","135","Тест негативный регистрации пользователя без какого либо поля json","tests.api","Sun Apr 20 12:13:51 MSK 2025","passed","Sun Apr 20 12:13:51 MSK 2025","","test_api","",""
+"Используем метод GET, для получения информации о авторизованно пользователе","283","Тест позитивный получения информации о авторизованном пользователе (о себе)","tests.api","Sun Apr 20 12:13:48 MSK 2025","passed","Sun Apr 20 12:13:48 MSK 2025","","test_api","",""
+"Используем метод POST, для простой регистрации пользователя","2343","Тест позитивный регистрации пользователя","tests.api","Sun Apr 20 12:13:48 MSK 2025","passed","Sun Apr 20 12:13:51 MSK 2025","","test_api","",""
+"","3984","Тест появления сообщений при добавлении товара в корзину","tests.ui","Sun Apr 20 12:15:03 MSK 2025","passed","Sun Apr 20 12:15:07 MSK 2025","","test_product_page","",""
+"","2438","Тест видимости формы логина и формы регистрации при переходе неавторизованного пользователя с MainPage на LoginPage","tests.ui","Sun Apr 20 12:14:13 MSK 2025","passed","Sun Apr 20 12:14:15 MSK 2025","TestLoginFromMainPage","test_main_page","",""
+"Открываем страницу товара 
+    Проверяем, что нет сообщения об успехе с помощью is_not_element_present","23120","Тест отсутствия сообщений о добавлении в корзину при открытии страницы продукта","tests.ui","Sun Apr 20 12:15:09 MSK 2025","passed","Sun Apr 20 12:15:32 MSK 2025","","test_product_page","",""
+"Открываем страницу товара 
+        Добавляем товар в корзину 
+        Проверяем, что нет сообщения об успехе с помощью is_not_element_present","1802","Тест заранее проваленный у авторизованного пользователя","tests.ui","Sun Apr 20 12:14:38 MSK 2025","skipped","Sun Apr 20 12:14:40 MSK 2025","TestUserAddToBasketFromProductPage","test_product_page","",""
+"","2719","Тест добавления товара в корзины авторизованным пользователем","tests.ui","Sun Apr 20 12:14:45 MSK 2025","passed","Sun Apr 20 12:14:47 MSK 2025","TestUserAddToBasketFromProductPage","test_product_page","",""
+"Используем метод POST, для регистрации пользователя с username 256 символ","143","Тест регистрации пользователя с username = 256 символ","tests.api","Sun Apr 20 12:13:52 MSK 2025","passed","Sun Apr 20 12:13:53 MSK 2025","","test_api","",""
+"Используем метод DELETE, для позитивного удаления пользователя","2","Тест позитивный удаления пользователя","tests.api","Sun Apr 20 12:13:55 MSK 2025","passed","Sun Apr 20 12:13:55 MSK 2025","","test_api","",""
+"This test verifies the screenshot of the login page.","1950","Test Screenshot for Login Page","tests.snapshots","Sun Apr 20 12:14:09 MSK 2025","passed","Sun Apr 20 12:14:11 MSK 2025","","test_screen_page","",""
+"Открываем страницу товара 
+    Добавляем товар в корзину 
+    Проверяем, что нет сообщения об успехе с помощью is_not_element_present","11275","Тест заранее проваленный","tests.ui","Sun Apr 20 12:14:49 MSK 2025","skipped","Sun Apr 20 12:15:00 MSK 2025","","test_product_page","",""
+"Сначала мы заходим переходим со страницы продукта в корзиу, проверем что она пустая, потом возвращаемся к продукту, кладём его в корзину, переходим в корзину и проверяем что корзина не пустая и в нем есть элемент товара.","28356","Тест надписей пустой корзины и не пустой","tests.ui","Sun Apr 20 12:15:51 MSK 2025","passed","Sun Apr 20 12:16:19 MSK 2025","","test_product_page","",""
+"Открываем страницу товара
+    Добавляем товар в корзину
+    Проверяем, что нет сообщения об успехе с помощью is_disappeared","7048","Тест заранее проваленный","tests.ui","Sun Apr 20 12:15:33 MSK 2025","skipped","Sun Apr 20 12:15:40 MSK 2025","","test_product_page","",""
+"This test verifies the screenshot of the product page.","2409","Test Screenshot for Product Page","tests.snapshots","Sun Apr 20 12:14:05 MSK 2025","passed","Sun Apr 20 12:14:08 MSK 2025","","test_screen_page","",""

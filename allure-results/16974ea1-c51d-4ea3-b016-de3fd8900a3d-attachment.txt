@@ -1,0 +1,2 @@
+Использовали фикстуру registered_user
+{'username': 'Joshua Hill', 'id': 1460, 'email': 'alexis08@example.net'}

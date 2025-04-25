@@ -1,8 +1,59 @@
-import allure, requests, pytest
+import allure, requests, pytest, re
 from faker import Faker
 from requests.auth import HTTPBasicAuth # для авторизации Basic (логин:пароль)
 from base64 import b64encode
 from unittest.mock import patch, Mock
+from pydantic import BaseModel, EmailStr
+from typing import Optional
+from jsonschema import validate
+
+
+
+@allure.feature('API')
+@allure.story('API Login')
+@allure.title("Тест позитивный получения информации о авторизованном пользователе (о себе)")
+@allure.description("Используем метод GET, для получения информации о авторизованно пользователе")
+@pytest.mark.user_registration
+def test_get_info_about_me(api_url, auth_headers):
+    class User(BaseModel):
+        username: str
+        id: int
+        email: EmailStr
+        gender: Optional[str] = None
+
+    schema = {
+                "type": "object",
+                "properties": {
+                    "username": {"type": "string"},
+                    "id": {"type": "integer"},
+                    "email": {"type": "string"},
+                    "gender": {"type": "string"}
+                                },
+                "required": ["username", "id", "email"]  # обязательные поля
+            }
+    response = requests.get(f"{api_url}/users/me/", headers = auth_headers)
+    assert response.status_code == 200
+    data = response.json()
+    print(data)
+    # Проверяем, что ответ — это словарь
+    assert isinstance(data, dict), f"Ожидался список, получен {type(data)}"
+    # Валидируем через jsonschema 
+    try:
+        validate(instance=data, schema=schema)  # Вызовет ValidationError
+    except Exception as e:
+        print(e)
+        raise
+      # Валидируем ответ через Pydantic
+    try:
+        user = User(**data)
+    except ValueError as e:
+        assert False, f"Ошибка валидации JSON: {e}"
+    # Валидируем каждый элемент списка через Pydantic
+    assert user.username, "Username не должен быть пустым"
+    assert data["id"] >= 0, "ID должен быть неотрицательным"
+    assert "@" in data["email"], "Email должен содержать '@'"
+    if user.gender is not None:  assert re.search(r'[\d\W]', user.gender) is None, "'Пол' не должен содержать символы и цифры"
+
 
 
 @allure.feature('API')
@@ -74,7 +125,7 @@ def test_api_quest_positive_registration_1_symbol_username(api_url):
     assert response.status_code==201, "Ошибка создания пользователя"
     assert response.json()["username"]==payload_data["username"] , "Username don't equal"
     assert response.json()["email"]==payload_data["email"] , "Username don't equal"
-
+    assert False
 
 
 @allure.feature('API')
@@ -134,6 +185,8 @@ def test_delete_user(mock_get, mock_delete, api_url, auth_headers):
     me_response = requests.get(f"{api_url}/users/me/", headers=auth_headers)
     # проверка, что пользователь удален и токен больше не действителен
     assert me_response.status_code == 401
+
+
 
 
 @allure.feature('API')

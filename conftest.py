@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 
 
+
 pytest_plugins = [
    "tests.api.fixtures_api"
 ]
@@ -33,8 +34,17 @@ def browser_chrome_settings(request):
     else:
         print("Запущен в обычном режиме")
     
+    # SELENIUM_REMOTE_URL = os.getenv("SELENIUM_REMOTE_URL", "http://185.43.4.63:4444/wd/hub")
 
+    # browser = webdriver.Remote(
+    # command_executor=SELENIUM_REMOTE_URL,
+    # options=options
+    #                             )
     browser = webdriver.Chrome(options = options, service=Service())
+    # browser = webdriver.Remote(
+    # command_executor="http://selenium__standalone-chrome:4444/wd/hub",
+    # options=options
+    # )
     browser.set_window_size(1280, 720)
     return browser
 

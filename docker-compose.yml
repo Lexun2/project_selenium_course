@@ -1,0 +1,39 @@
+# services:
+#   tests:
+#     image: project_selenium_course-tests:latest
+#     container_name: my_tests
+#     ports:
+#       - "8080:80"
+#     volumes:
+#       - ./allure-results:/app/allure-results
+#       - ./screenshots:/app/screenshots
+#     environment:
+#       - PYTHONUNBUFFERED=1
+
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./allure-results:/app/allure-results
+      - ./screenshots:/app/screenshots
+      - ./tests/snapshots:/app/tests/snapshots
+    environment:
+      - PYTHONUNBUFFERED=1
+      - HEADLESS=True
+
+# services:
+#   tests:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     volumes:
+#       - ./allure-results:/app/allure-results
+#       - ./screenshots:/app/screenshots
+#     environment:
+#       - PYTHONUNBUFFERED=1
+#         - HEADLESS=True
+#     command: sh -c "python -m pytest --browser_name=chrome --alluredir=/app/allure-results-$(date +%Y%m%d_%H%M%S) --verbose tests && sleep infinity"
+    
+
