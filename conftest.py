@@ -1,8 +1,9 @@
 import pytest, os, allure, tempfile
 from datetime import datetime
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 
@@ -14,6 +15,7 @@ pytest_plugins = [
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome', help="Choose browser: chrome or firefox")
     parser.addoption('--language', action='store', default='ru, en', help="Choose language: 'ru' or 'en'")
+    parser.addoption('--headless', action='store', default='False', help="HEADLESS: 'true' or 'false'")
 
 def browser_chrome_settings(request):
     options = Options()
@@ -21,13 +23,17 @@ def browser_chrome_settings(request):
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
     options.add_argument("--disable-gpu")
     options.add_argument("--ignore-certificate-errors")
+    # для обхода детектирования автоматизированного ПО
+    # options.add_experimental_option("excludeSwitches", ["enable-automation"]) 
+    # options.add_experimental_option('useAutomationExtension', False)
+    # options.add_argument("—disable-blink-features=AutomationControlled")
 
     # Уникальная временная директория для user-data-dir
     temp_user_data_dir = tempfile.mkdtemp()
     options.add_argument(f"--user-data-dir={temp_user_data_dir}")
 
-
-    headless = os.environ.get('HEADLESS', 'False').lower() == 'true'
+    
+    headless = os.environ.get('HEADLESS', 'False').lower() == 'true' or request.config.getoption("headless")=='true'
     if headless:
         options.add_argument("--headless")
         print("Запущен в headless режиме")
@@ -40,7 +46,8 @@ def browser_chrome_settings(request):
     # command_executor=SELENIUM_REMOTE_URL,
     # options=options
     #                             )
-    browser = webdriver.Chrome(options = options, service=Service())
+    browser = webdriver.Chrome(options=options)
+    # browser = webdriver.Chrome(options = options, service=Service())
     # browser = webdriver.Remote(
     # command_executor="http://selenium__standalone-chrome:4444/wd/hub",
     # options=options
