@@ -10,3 +10,4 @@ pillow==11.2.1
 numpy==2.2.4
 pydantic[email]
 jsonschema==4.23.0
+pytest-xdist==3.6.1
